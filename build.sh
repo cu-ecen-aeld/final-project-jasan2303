@@ -9,7 +9,7 @@ git submodule update
 # local.conf won't exist until this step on first execution
 source poky/oe-init-build-env
 
-CONFLINE="MACHINE = \"qemuarm64\""
+CONFLINE="MACHINE = \"beaglebone-yocto\""
 
 cat conf/local.conf | grep "${CONFLINE}" > /dev/null
 local_conf_info=$?
@@ -20,6 +20,18 @@ if [ $local_conf_info -ne 0 ];then
 	
 else
 	echo "${CONFLINE} already exists in the local.conf file"
+fi
+
+IMAGE="IMAGE_FSTYPES = \"wic.bz2\""
+
+cat conf/local.conf | grep "${IMAGE}" > /dev/null
+local_image_info=$?
+
+if [ $local_image_info -ne 0 ];then 
+    echo "Append ${IMAGE} in the local.conf file"
+	echo ${IMAGE} >> conf/local.conf
+else
+	echo "${IMAGE} already exists in the local.conf file"
 fi
 
 
