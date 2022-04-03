@@ -45,5 +45,19 @@ else
 	echo "meta-aesd layer already exists"
 fi
 
+#Add wifi support
+DISTRO_F="DISTRO_FEATURES:append = \" wifi\""
+
+cat conf/local.conf | grep "${DISTRO_F}" > /dev/null
+local_distro_info=$?
+
+if [ $local_distro_info -ne 0 ];then
+    echo "Append ${DISTRO_F} in the local.conf file"
+	echo ${DISTRO_F} >> conf/local.conf
+else
+	echo "${DISTRO_F} already exists in the local.conf file"
+fi
+
+
 set -e
 bitbake core-image-aesd
