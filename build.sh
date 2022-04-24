@@ -92,6 +92,44 @@ else
 	echo "${LICENCE} already exists in the local.conf file"
 fi
 
+
+# Added by: Jasan Singh
+# Adding required gstreamer Package_configs for x264 to local.conf file
+cat conf/local.conf | grep "x264" > /dev/null
+local_licn_info=$?
+
+if [ $local_licn_info -ne 0 ];then
+    echo "Append x264 PACKAGECONFIG to local.conf file"
+         echo "PACKAGECONFIG_append_pn-gstreamer1.0-plugins-ugly = \" x264\"" >> conf/local.conf
+else
+         echo " x264 package congigurations already exists in local.conf"
+fi
+
+# Added by: Jasan Singh
+# Adding required gstreamer Package_configs for voaacenc to local.conf file
+cat conf/local.conf | grep " voaacenc" > /dev/null
+local_licn_info=$?
+
+if [ $local_licn_info -ne 0 ];then
+    echo "Append voaacenc PACKAGECONFIG to local.conf file"
+         echo "PACKAGECONFIG_append_pn-gstreamer1.0-plugins-bad = \" voaacenc\"" >> conf/local.conf
+else
+         echo " voaacenc package congigurations already exists in local.conf"
+fi
+
+# Added by: Jasan Singh
+# Adding required gstreamer Package_configs for rtmp to local.conf file
+cat conf/local.conf | grep " rtmp" > /dev/null
+local_licn_info=$?
+
+if [ $local_licn_info -ne 0 ];then
+    echo "Append rtmp PACKAGECONFIG to local.conf file"
+         echo "PACKAGECONFIG_append_pn-gstreamer1.0-plugins-bad = \" rtmp\"" >> conf/local.conf
+else
+         echo " rtmp package congigurations already exists in local.conf"
+fi
+
+
 #Add meta-oe from openembedded
 bitbake-layers show-layers | grep "meta-oe" > /dev/null
 layer_oe_info=$?
