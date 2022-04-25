@@ -41,19 +41,11 @@ do_compile () {
 }
 
 do_install () {
-	# TODO: Install your binaries/scripts here.
-	# Be sure to install the target directory with install -d first
-	# Yocto variables ${D} and ${S} are useful here, which you can read about at 
-	# https://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html#var-D
-	# and
-	# https://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html#var-S
-	# See example at https://github.com/cu-ecen-aeld/ecen5013-yocto/blob/ecen5013-hello-world/meta-ecen5013/recipes-ecen5013/ecen5013-hello-world/ecen5013-hello-world_git.bb
+	
 	
 	install -d ${D}${bindir}
-	#install -m 0755 ${S}/aesdsocket ${D}${bindir}/
 	install -m 0755 ${S}/serverPL1.sh ${D}${bindir}/
 	install -m 0755 ${S}/serverPL2.sh ${D}${bindir}/
-	#install -m 0755 ${S}/server ${D}${bindir}/
 	install -m 0755 ${S}/serverMPL1.sh ${D}${bindir}/
 	install -m 0755 ${S}/utube.sh ${D}${bindir}/
 
